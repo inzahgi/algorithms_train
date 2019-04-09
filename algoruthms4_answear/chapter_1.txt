@@ -1,0 +1,1142 @@
+1.1.1 给出以下表达式的值：
+    a. (0 + 15)/2
+    b. 2.0e-6 * 100000000.1
+    c. true && false || true && true
+
+答案： a. 7, b. 200.0000002, c. true
+
+1.1.2 给出以下表达式的类型和值：
+    a. (1+2.236)/2
+    b. 1+2+3+4.0
+    c. 4.1 >= 4
+    d. 1+2+"3"
+
+1.618
+10.0
+true
+33
+
+1.1.3
+
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        if(args.length != 3){
+            throw new IllegalArgumentException("Invalid number of arguments");
+        }
+        int num1 = Integer.parseInt(args[0]);
+        int num2 = Integer.parseInt(args[1]);
+        int num3 = Integer.parseInt(args[2]);
+
+        if(num1 == num2 || num1 == num3){
+            System.out.println("equal");
+        }else {
+            System.out.println("not equal");
+        }
+        
+    }
+}
+
+
+1.1.4
+1.'then' is not key word of java 2.(a>b) 4.before 'else' should have ';'
+
+1.1.5
+public class chapter1 {
+
+    public static void main(String[] args) {
+        double num1 = Math.random()*2;
+        double num2 = Math.random()*2;
+        System.out.println("num1 = " + num1 + "\tnum2 = " + num2);
+        System.out.println("both in (0, 1) ? " + (num1>0 && num1 < 1 && num2 >0 && num2 <1));
+    }
+}
+
+1.1.6
+
+
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+
+1.1.7
+
+3.00009
+499500
+509500
+
+1.1.8
+
+b
+197
+f
+
+1.1.9
+public class chapter1 {
+
+    public static void main(String[] args) {
+        int n = 14;
+        StringBuilder sb = new StringBuilder();
+        for(int i = n; i > 0; i /=2){
+            sb.append(i % 2);
+        }
+
+        System.out.println(sb.reverse().toString());
+
+        sb.delete(0, sb.length());
+        for(int i = n; i > 0; i=i>>>1){
+            sb.append(i&1);
+        }
+        System.out.println(sb.reverse().toString());
+
+    }
+}
+
+1.1.11
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        boolean [][] a= new boolean[5][5];
+        for(int i = 0; i<5; i++){
+            for(int j = 0; j<5; j++){
+                a[i][j] = Math.random() > 0.5;
+            }
+        }
+
+        for(int i=0; i<5; i++) {
+            for (int j = 0; j < 5; j++) {
+                System.out.print("a[" + i + "][" + j + "]=" + a[i][j] + "  "+ (a[i][j]==true?"*":" ") +"\t");
+            }
+            System.out.println();
+        }
+    }
+}
+
+1.1.12
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+1.1.13
+
+public class chapter1 {
+
+    public static void print(int[][] a){
+        for(int i=0; i<5; i++) {
+            for (int j = 0; j < 5; j++)
+                System.out.printf("[%d][%d]=%d\t", i, j, a[i][j]);
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] a = new int[5][5];
+        for(int i=0; i<5; i++)
+            for(int j=0; j<5; j++)
+                a[i][j] = Math.round((float)Math.random()*10);
+
+        chapter1.print(a);
+
+        int[][] b = new int[5][5];
+
+        System.out.println("\n\n");
+        for(int i = 0; i<a.length; i++)
+            for (int j=0; j<a[i].length; j++) {
+                b[j][i]=a[i][j];
+            }
+
+        chapter1.print(b);
+
+
+    }
+}
+
+
+1.1.14
+public class chapter1 {
+
+    public static int lg(int N){
+        int res = 0;
+        int remainder = 0;
+        while(N >2 || (N==2 && remainder != 0 )){
+            res +=1;
+           if(remainder == 0 && N%2 != 0)
+                remainder =1;
+            N /= 2;
+        }
+        return res;
+    }
+
+    public static int lg_1(int N){
+        int res = 0;
+        int likeN = 2;
+        while(N>2 && likeN < N){
+            res += 1;
+            likeN *= 2;
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+
+        int N = 1000;
+        for (int i = 0; i < N; i++) {
+            //System.out.printf("%d ----- %d ---------%d\n\n", i, chapter1.lg(i), chapter1.lg_1(i));
+            if(chapter1.lg(i) != chapter1.lg_1(i)) {
+                System.out.printf("%d ----- %d ---------%d\n\n", i, chapter1.lg(i), chapter1.lg_1(i));
+            }
+
+        }
+
+    }
+}
+
+
+1.1.15
+
+public class chapter1 {
+
+    public static int[] histogram(int[] a, int M) {
+        int[] res = new int[M];
+        for(int i=0; i<M; i++){
+            int cnt = 0;
+            for(int j: a) {
+                if(j==i)
+                    cnt++;
+            }
+            res[i] = cnt;
+        }
+        return res;
+    }
+
+    public static int[] histogram_1(int[] a, int M) {
+        int[] res = new int[M];
+        for(int i: a){
+            if(i<M) {
+                res[i] = res[i] + 1;
+            }
+        }
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int a[] ={1,2,3,4,5,6,7,8,9,1};
+        int M = 10;
+        int[] res = chapter1.histogram_1(a, M);
+        for (int i = 0; i < M; i++) {
+            System.out.printf("%d----%d\n",i, res[i]);
+        }
+
+
+    }
+}
+
+
+1.1.16
+
+11422472253113571022531135831136114224681013225311358311361142246811311361142246911422472253113579111316225311358311361142246811311361142246911422472253113579111431136114224691142247225311357912114224722531135710225311358311361142246810121416
+
+public class chapter1 {
+
+    public static String exR1(int n) {
+        if(n <= 0) return "";
+        return exR1(n-3) + n + exR1(n-2) + n;
+    }
+
+
+    public static void main(String[] args) {
+
+            System.out.printf("%s\n",exR1(16));
+    }
+}
+
+
+1.1.17
+
+1.1.18
+
+mystery_1(4, 12) + 2
+mystery_1(32, 1) + 16
+mystery_1(64, 0) + 32
+50
+mystery_1(6, 5) + 3
+mystery_1(12, 2) + 6
+mystery_1(48, 0) + 24
+33
+mystery_2(4, 12) * 2
+mystery_2(256, 1) * 16
+mystery_2(65536, 0) * 256
+8192
+mystery_2(9, 5) * 3
+mystery_2(81, 2) * 9
+mystery_2(26244, 0) * 162
+4374
+
+public class chapter1 {
+
+    public static int mystery_1(int a, int b){
+        if(b == 0)
+            return 0;
+        if(b % 2 == 0)
+            return mystery_1(a + a, b / 2);
+        System.out.printf("mystery_1(%d, %d) + %d\n", a+a, b/2, a);
+        return mystery_1(a + a, b/2) + a;
+
+    }
+
+    public static int mystery_2(int a, int b){
+        if(b == 0)
+            return 1;
+        if(b % 2 == 0)
+            return mystery_2(a + a, b / 2);
+        System.out.printf("mystery_2(%d, %d) * %d\n", a*a, b/2, a);
+        return mystery_2(a * a, b / 2) * a;
+
+    }
+
+
+    public static void main(String[] args) {
+
+        System.out.printf("%s\n",mystery_1(2, 25));
+        System.out.printf("%s\n",mystery_1(3, 11));
+
+        System.out.printf("%s\n",mystery_2(2, 25));
+        System.out.printf("%s\n",mystery_2(3, 11));
+
+    }
+}
+
+1.19
+结果long 溢出
+
+public class chapter1 {
+
+    public static long[] ar = null;
+    public static long F(int N){
+        if(N == 0) return 0;
+        else if(N == 1) return 1;
+        else {
+            if(ar[N] != 0)
+                return ar[N];
+        }
+        return F(N-1) + F(N-2);
+    }
+
+
+    public static void main(String[] args) {
+        ar = new long[100];
+        for(int N = 0; N < 100; N++) {
+            long res = F(N);
+            ar[N] = res;
+            StdOut.println(N + " " + res);
+        }
+
+    }
+}
+
+
+1.20
+
+public class chapter1 {
+
+    public static double F(int x){
+        if(x <= 1)
+            return 0;
+        else
+            return F(x-1) + Math.log(x);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(F(10));
+    }
+}
+
+
+1.21
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        List<Record> list = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
+        while(scanner.hasNext() && (input =scanner.nextLine()) != null){
+            System.out.println(input);
+            String[] line = input.split(" ");
+            if(line.length != 3 ){
+                System.out.println("input wrong!!");
+                return;
+            }
+            list.add(new Record(input));
+
+        }
+        scanner.close();
+
+        for(Record r : list){
+            System.out.println(r);
+        }
+
+    }
+
+
+}
+
+class Record {
+    private String name;
+    private int numOne;
+    private int numTwo;
+    private float res;
+    
+    public Record(String line) {
+        String[] col = line.split(" ");
+        name = col[0];
+        numOne = Integer.valueOf(col[1]);
+        numTwo = Integer.valueOf(col[2]);
+        res = (float)numOne/numTwo;
+    }
+
+    @Override
+    public String toString() {
+        return "name = " + name +
+                "\tnumOne = " + numOne +
+                "\tnumTwo = " + numTwo +
+                "\tres = " + res;
+    }
+}
+
+
+1.22
+
+depth = 1, mid = 4
+depth = 2, mid = 1
+depth = 3, mid = 2
+depth = 4, mid = 3
+3
+
+public class chapter1 {
+
+    public static int depth = 0;
+
+    public static int rank(int key, int[] a){
+        return rank(key, a, 0, a.length-1);
+    }
+
+    public static int rank(int key, int[] a, int lo, int hi){
+        if(lo > hi) {
+            System.out.println("lo > hi wrong!!!");
+            return -1;
+        }
+        int mid = lo + (hi - lo) /2;
+        if(key < a[mid]) {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return rank(key, a, lo, mid - 1);
+        }
+        else if(key > a[mid]) {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return rank(key, a, mid + 1, hi);
+        }
+        else {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return mid;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4,5,6,7,8,9};
+        System.out.println(rank(4, a));
+
+    }
+
+}
+
+1.23
+
++: [4, 5, 3]
+-: [12, 56]
+
+public class chapter1 {
+
+    public static int depth = 0;
+
+    public static int rank(int key, int[] a){
+        return rank(key, a, 0, a.length-1);
+    }
+
+    public static int rank(int key, int[] a, int lo, int hi){
+        if(lo > hi) {
+            System.out.println("lo > hi wrong!!!");
+            return -1;
+        }
+        int mid = lo + (hi - lo) /2;
+        if(key < a[mid]) {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return rank(key, a, lo, mid - 1);
+        }
+        else if(key > a[mid]) {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return rank(key, a, mid + 1, hi);
+        }
+        else {
+            System.out.printf("depth = %d, mid = %d\n", ++depth, mid);
+            return mid;
+        }
+    }
+
+    public static void main(String[] args) {
+        List<String> inArr = new ArrayList<>();
+        List<String> outArr = new ArrayList<>();
+        int[] a = {1,2,3,4,5,6,7,8,9};
+        String str=null;
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
+        while(scanner.hasNext() && (input =scanner.nextLine()) != null){
+            System.out.println(input);
+            String[] numStr = input.split(" ");
+            for(String s : numStr){
+                int res = rank(Integer.valueOf(s).intValue(), a);
+                if(res == -1){
+                    outArr.add(s);
+                }else {
+                    inArr.add(s);
+                }
+            }
+        }
+        scanner.close();
+
+
+        System.out.printf("+: %s\n-: %s\n", inArr, outArr);
+
+    }
+
+}
+
+
+1.24
+
+3
+3
+
+
+public class chapter1 {
+
+    public static int maxComDivisor(int m, int n){
+
+        int temp;
+        while(n != 0){
+            temp = n;
+            n = m %n;
+            m = temp;
+        }
+        return m;
+
+    }
+
+
+    public static void main(String[] args) {
+
+
+        System.out.println(maxComDivisor(105, 24));
+        System.out.println(maxComDivisor(24, 105));
+
+
+    }
+
+}
+
+1.25
+
+令c=gcd(a,b），则设a=mc，b=nc
+可知r =a-kb=mc-knc=(m-kn)c
+根据第二步结果可知c也是r的因数
+可以断定m-kn与n互素[否则，可设m-kn=xd，n=yd，（d>1），则m=kn+xd=kyd+xd=(ky+x)d，则a=mc=(ky+x)dc，b=nc=ycd，故a与b最大公约数≥cd，而非c，与前面结论矛盾]
+从而可知gcd(b,r)=c，继而gcd(a,b)=gcd(b,r），得证
+
+
+1.1.26
+
+public class chapter1 {
+    private static int cnt = 0;
+
+    public static double binomial(int N, int k, double p){
+        cnt++;
+        System.out.printf("---- cnt = %d\n", cnt);
+        if(N ==0 && k == 0)
+            return 1.0;
+        if (N < 0 || k < 0)
+            return 0.0;
+        return (1.0 - p) * binomial(N-1, k, p) + p * binomial(N-1, k-1, p);
+    }
+
+
+    public static void main(String[] args) {
+        
+        System.out.printf("res = %f, cnt = %d\n",binomial(100, 50, 0.25), cnt);
+
+    }
+
+}
+
+
+ps.优化版待写
+
+1.1.27
+
+优化版待写
+
+
+1.1.28
+
+all num :
+a[0]=1	a[1]=2	a[2]=2	a[3]=2	a[4]=2	a[5]=2	a[6]=2	a[7]=2	a[8]=2	a[9]=2	a[10]=2	a[11]=2	a[12]=3	a[13]=3	a[14]=5	a[15]=8	
+same num :
+a[8]=2	a[9]=2	a[10]=2	a[11]=2	a[7]=2	a[6]=2	a[5]=2	a[4]=2	a[3]=2	a[2]=2	a[1]=2	
+
+public class chapter1 {
+
+    public static void binarySearch(int[] a, int x){
+        int[] sameIndexArr = new int[a.length];
+        int arrLen = 0;
+        if(a.length <= 0) {
+            System.out.println("input array len is 0");
+            return;
+        }
+        int low = 0;
+        int high = a.length;
+        int mid;
+        while(low <= high){
+            mid = (low+high)/2;
+            if(x != a[mid]) {
+                if (x < a[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid  + 1;
+                }
+            }else {
+                sameIndexArr[arrLen++] = mid;
+                for(int i = 1; i+mid < a.length-1; i++){
+                    if(a[mid + i] == x){
+                        sameIndexArr[arrLen++] = mid + i;
+                        continue;
+                    }
+                    break;
+                }
+
+                for(int i = 1; mid - i > 0; i++){
+                    if(a[mid -i] == x){
+                        sameIndexArr[arrLen++] = mid - i;
+                        continue;
+                    }
+                    break;
+                }
+                break;
+            }
+        }
+
+        System.out.println("same num :");
+        for(int i = 0; i< arrLen; i++){
+            System.out.printf("a[%d]=%d\t", sameIndexArr[i], a[sameIndexArr[i]]);
+        }
+        System.out.println();
+
+    }
+
+
+
+    public static void main(String[] args) {
+
+        int[] a = {1, 2,2,2,2,2,2,2,2,2,2,2,3,3,5,8,9};
+        System.out.println("all num :");
+        for(int i = 0 ; i < a.length-1; i++){
+            System.out.printf("a[%d]=%d\t", i, a[i]);
+        }
+        System.out.println();
+        binarySearch(a, 2);
+
+    }
+
+}
+
+
+1.1.29
+
+public class chapter1 {
+
+    public static int binarySearch(int[] a, int x){
+        if(a.length <= 0) {
+            System.out.println("input array len is 0");
+            return -1;
+        }
+        int low = 0;
+        int high = a.length -1;
+        int mid = 0;
+        while(low <= high){
+            mid = (low + high) / 2;
+            if(x != a[mid]) {
+                if (x < a[mid]) {
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+
+                continue;
+            }
+            return mid;
+        }
+        return -1;
+    }
+
+    //小于x的个数
+    public static int rank(int[] a,  int x){
+        int index = binarySearch(a, x);
+        if(index == -1)
+            return 0;
+        int cnt = 0;
+        for(int i = 1;  i <= index; i++){
+            if(a[index-i] < x)
+                cnt++;
+        }
+        return cnt;
+
+    }
+
+    //等于x的个数
+    public static int count(int[] a, int x){
+        int index = binarySearch(a, x);
+        if(index == -1)
+            return 0;
+        int cnt = 0;
+        for(int i = 1; i > index; i++){
+            if(a[index - i] != x)
+                break;
+            cnt++;
+        }
+        for(int i = 1; i<a.length -index; i++){
+            if(a[index + i] != x)
+                break;
+            cnt++;
+        }
+        return cnt;
+    }
+
+
+
+    public static void main(String[] args) {
+
+        int[] a = {1, 2,2,2,2,2,2,2,2,2,2,2,3,3,5,8,9};
+//        int[] a = {1,2,3,4};
+        System.out.println("all num :");
+        for(int i = 0 ; i < a.length; i++){
+            System.out.printf("a[%d]=%d\t", i, a[i]);
+        }
+        int minCnt = rank(a, 3);
+        int sameCnt = count(a, 3);
+        System.out.printf("\nminCnt = %d, sameCnt = %d", minCnt, sameCnt);
+
+    }
+
+}
+
+
+1.1.30
+
+public class chapter1 {
+
+    public static boolean checkBothPrime(int x, int y){
+        if(x == 0 || y == 0)
+            return false;
+        if(x == 1 || y == 1)
+            return true;
+        if(x == y)
+            return true;
+        int originX = x;
+        if(x < y){
+            originX = x;
+            x = y;
+            y = originX;
+            originX = x;
+        }
+
+        int temp = 0;
+        while(y != 0){
+            temp = y;
+            y = x % y;
+            x = temp;
+        }
+        if(x != 1 && x > y)
+            return true;
+        return false;
+
+    }
+
+    public static void main(String[] args) {
+
+        int N = 5;
+        //boolean primeArr[][] = new boolean[N][N];
+        boolean a[][] =new boolean[N][N];
+        for(int i = 0; i < N; i++){
+            for(int j = i; j < N; j++){
+                if(checkBothPrime(j, i)){
+                    a[i][j] = true;
+                    a[j][i] = true;
+                }else {
+                    a[i][j] = false;
+                    a[j][i] = false;
+                }
+            }
+        }
+
+        for(int i = 0; i < N; i++){
+            for(int j = 0; j < N; j++){
+                System.out.printf("a[%d][%d] = %b\n", i, j, a[i][j]);
+            }
+        }
+
+
+    }
+
+}
+
+1.1.31
+
+优化版待写
+
+1.1.32
+优化版待写
+
+1.1.33
+
+public class chapter1 {
+
+    public static double dot(double[] x, double[] y){
+        if(x.length > 0 && y.length > 0 && x.length == y.length) {
+            System.out.println("input dot array is wrong!!");
+            return 0;
+        }
+        double res =0;
+        for(int i = 0; i < x.length ; i++){
+            res += x[i] * y[i];
+        }
+        return res;
+    }
+
+    public static double[][] mult(double[][] a, double[][] b){
+        double[][] res = new double[a.length][b.length];
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < b.length; j++){
+                res[i][j] = a[i][j] * b[j][i];
+            }
+        }
+        return res;
+
+    }
+
+    public static double[][] transpose(double[][] a){
+        double[][] res = new double[a.length][a[0].length];
+        for(int i = 0; i < a.length; i++){
+            for(int j = 0; j < a[0].length; j++){
+                res[i][j] = a[j][i];
+                res[j][i] = a[i][j];
+            }
+        }
+
+        return res;
+
+    }
+
+    //矩阵乘向量
+    public static double[] mult(double[][] a, double[] x){
+        double[] res = new double[x.length];
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < x.length; j++) {
+               res[j] = a[i][0] * x[j];
+            }
+        }
+        return res;
+    }
+
+    //向量乘矩阵
+    public static double[] mult(double[] y, double[][] a){
+        double[][] res = new double[y.length][a.length];
+    }
+
+
+    public static void main(String[] args) {
+
+
+    }
+
+}
+
+待优化
+
+1.1.34
+以下哪些任务需要（在数组中，比如）保存标准输入中的所有值？
+打印出所有数的中位数
+打印出大于平均值的数的百分比
+将N 个数按照升序打印
+将N 个数按照随机顺序打印
+
+
+哪些可以被实现为一个过滤器且仅使用固定数量的变量和固定大小的数组（和N 无关）？
+打印出最大和最小的数
+打印出第k 小的数，k 小于100
+打印出所有数的平方和
+打印出N 个数的平均值
+
+
+
+1.1.35
+
+//注意四舍五入的规则
+
+public class chapter1 {
+
+    public static void main(String[] args) {
+        int N = 10000000;
+        int SIDES = 6;
+        double[] dist = new double[2*SIDES+1];
+        for(int i = 1; i <= SIDES; i++){
+            for(int j = 1; j <= SIDES; j++)
+                dist[i+j] += 1.0;
+        }
+        for(int k =2; k <= 2*SIDES; k++)
+            dist[k] /= 36.0;
+
+        double[] testCntArr = new double[2*SIDES+1];
+        for(int i = 0; i < N; i++){
+            double a = Math.floor(Math.random()*6) +1;
+            double b = Math.floor(Math.random()*6) +1;
+            int res = (int)(a+b);
+            testCntArr[res] += 1;
+        }
+
+        for(int i = 2; i <= 2*SIDES; i++){
+            System.out.printf("i = %d\tcalculate = %f \ttest = %f\n", i, dist[i], testCntArr[i]/N);
+        }
+    }
+}
+
+
+1.1.36
+public class chapter1 {
+
+
+    public static void shuffle(int[] a){
+        int temp;
+        for (int i = 0; i < a.length; i++) {
+            int r = (int)(Math.random()*(a.length - i)) + i;
+            temp = a[i];
+            a[i] = a[r];
+            a[r] = temp;
+        }
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.printf("a[%d]=%d\t", i, a[i]);
+//        }
+//        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int N = 1000, M = 5;
+        int[] a = new int[M];
+        int[][] cntArr = new int[M][M];
+        for(int i = 0; i < N; i++){
+            for (int j = 0; j < M; j++) {
+                a[j] = j;
+            }
+            shuffle(a);
+            for (int j = 0; j < M; j++) {
+                int newIndex = a[j];
+                cntArr[j][newIndex] += 1;
+            }
+        }
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.printf("cnt[%d][%d]=%d\n", i, j, cntArr[i][j]);
+            }
+        }
+
+    }
+}
+
+1.1.37
+
+
+public class chapter1 {
+
+    public static void shuffle(int[] a){
+        int temp;
+        for (int i = 0; i < a.length; i++) {
+            int r = (int)(Math.random()*a.length);
+            temp = a[i];
+            a[i] = a[r];
+            a[r] = temp;
+        }
+//        for (int i = 0; i < a.length; i++) {
+//            System.out.printf("a[%d]=%d\t", i, a[i]);
+//        }
+//        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int N = 100, M = 5;
+        int[] a = new int[M];
+        int[][] cntArr = new int[M][M];
+        for(int i = 0; i < N; i++){
+            for (int j = 0; j < M; j++) {
+                a[j] = j;
+            }
+            shuffle(a);
+            for (int j = 0; j < M; j++) {
+                int newIndex = a[j];
+                cntArr[j][newIndex] += 1;
+            }
+        }
+
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < M; j++) {
+                System.out.printf("cnt[%d][%d]=%d\n", i, j, cntArr[i][j]);
+            }
+        }
+
+    }
+}
+
+
+1.1.38
+
+binarySearchTime 139, bruteForceSearchTime 143014
+
+public class chapter1 {
+
+    public static int bruteForceSearch(int key, int[] a){
+        for (int i = 0; i < a.length; i++){
+            if(a[i] == key)
+                return i;
+        }
+        return -1;
+    }
+
+    public static int binarySearch(int key, int[] a){
+        if(a.length <1)
+            return -1;
+        int low = 0;
+        int high = a.length -1;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(a[mid] == key)
+                return mid;
+            else if(a[mid] > key)
+                high = mid -1;
+            else
+                low = mid + 1;
+        }
+        return -1;
+
+    }
+
+    public static void main(String[] args) {
+
+        In in1 = new In("F:\\1\\algs4-data\\algs4-data\\largeT.txt");
+        int[] allList = in1.readAllInts();
+
+        // sort the array
+        Arrays.sort(allList);
+
+        In in2 = new In("F:\\1\\algs4-data\\algs4-data\\largeW.txt");
+        int[] whileList = in2.readAllInts();
+
+        //Arrays.sort(whileList);
+
+        System.out.println("start binarySrarch");
+        long startBinarySearchTime = System.currentTimeMillis();
+        for(int a: whileList){
+            binarySearch(a, allList);
+        }
+        long endBinarySearchTime = System.currentTimeMillis();
+        System.out.println("start bruteForceSearch");
+        long startBruteForceSearchTime = System.currentTimeMillis();
+        for(int a: whileList){
+            bruteForceSearch(a, allList);
+        }
+        long endBruteForceSearchTime = System.currentTimeMillis();
+
+        System.out.printf("binarySearchTime %d, bruteForceSearchTime %d\n", endBinarySearchTime - startBinarySearchTime,
+                endBruteForceSearchTime - startBruteForceSearchTime);
+
+
+    }
+}
+
+
+
+1.1.39
+
+public class chapter1 {
+
+    public static int binarySearch(int key, int[] a){
+        if(a.length <1)
+            return -1;
+        int low = 0;
+        int high = a.length -1;
+        while(low <= high){
+            int mid = (low+high)/2;
+            if(a[mid] == key)
+                return mid;
+            else if(a[mid] > key)
+                high = mid -1;
+            else
+                low = mid + 1;
+        }
+        return -1;
+
+    }
+
+    public static void main(String[] args) {
+
+        int MAX_NUM = 1000*1000;
+        int T = 100;
+        int[] nArr = {1000, 1000*10, 1000*100, 1000*1000};
+
+        for(int N :nArr){
+            int[] aArr = new int[N];
+            int[] bArr = new int[N];
+            for(int i = 0; i < N; i++){
+                aArr[i] = (int)(Math.random()*MAX_NUM)+1;
+                bArr[i] = (int)(Math.random()*MAX_NUM)+1;
+            }
+            int cnt = 0;
+            for (int i = 0; i < T; i++) {
+                for (int n : aArr){
+                    if(binarySearch(n, bArr) > 0)
+                        cnt++;
+                }
+            }
+            System.out.printf("input N=%d T=%d averge cnt = %d\n",N, T, cnt);
+        }
+
+    }
+}
