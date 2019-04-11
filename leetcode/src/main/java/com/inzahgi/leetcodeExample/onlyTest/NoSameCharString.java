@@ -36,14 +36,32 @@ public class NoSameCharString {
 
     public String findUniqueCharString2(String str) {
         int start = 0, end = 0;
-        int i = 0, j = 0;
+        int i = 0, j = 1;
         for (; j < str.length(); j++) {
-
+            char ch = str.charAt(j);
+            if(j > 0) {
+                for (int k = j - 1; k >= i; k--) {
+                    if(str.charAt(k) == ch){
+                        if((j-i) > (end -start)) {
+                            start = i;
+                            end = j;
+                        }
+                        i = k+1;
+                    }
+                }
+            }
         }
+        if((j - i) > (end -start))
+            return str.substring(i, j);
+        else
+            return str.substring(start, end);
+
+
     }
 
     public static void main(String[] args) {
         NoSameCharString nscs = new NoSameCharString();
-        System.out.println(nscs.findUniqueString("ye1hude2e2uque82qu2"));
+        //System.out.println(nscs.findUniqueString("ye1hude2e2uque82qu2"));
+        System.out.println(nscs.findUniqueCharString2("ye1hude2e2uque82qu2"));
     }
 }
