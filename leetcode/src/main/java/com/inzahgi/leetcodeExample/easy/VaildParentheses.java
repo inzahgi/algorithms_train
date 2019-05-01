@@ -3,15 +3,18 @@ package com.inzahgi.leetcodeExample.easy;
 public class VaildParentheses {
 
 
-    //todo
+
     public boolean isValid(String s) {
         if(s.length() == 0) {
             return false;
         }
         char[] aArr = s.toCharArray();
+        char[] stackArr = new char[aArr.length];
+        int len = 0;
+        for (int i = 0; i < aArr.length; i++) {
+            if(getCharType(aArr[i]) != 0){
 
-        for (int i = 0, j = aArr.length -1; i < j; i++, j--) {
-            char c1 = aArr[i];
+            }
 
         }
         return false;
