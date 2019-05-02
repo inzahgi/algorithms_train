@@ -6,18 +6,33 @@ public class VaildParentheses {
 
     public boolean isValid(String s) {
         if(s.length() == 0) {
-            return false;
+            return true;
         }
         char[] aArr = s.toCharArray();
-        char[] stackArr = new char[aArr.length];
-        int len = 0;
+        int[] stackArr = new int[aArr.length];
+        int len = -1;
         for (int i = 0; i < aArr.length; i++) {
-            if(getCharType(aArr[i]) != 0){
-
+            int chType = getCharType(aArr[i]);
+            if(chType == 0){
+                continue;
             }
+            if(chType != 0){
+                if(len != -1){
+                    if(chType > 0){
+                        if(chType != -stackArr[len]) {
+                            return false;
+                        }else{
+                            len--;
+                            continue;
+                        }
+                    }
+                }
 
+                len++;
+                stackArr[len] = chType;
+            }
         }
-        return false;
+        return len == -1;
     }
 
     private int getCharType(char c){
@@ -34,23 +49,11 @@ public class VaildParentheses {
         return i;
     }
 
-    private boolean isParentheses(char c1, char c2){
-        boolean res = false;
-        switch(c1) {
-            case '{':
-                 return c2 == '}';
-            case '[':
-                return c2 == ']';
-            case '(':
-                return c2 == ')';
-            default:
-                return false;
-        }
-    }
 
     public static void main(String[] args) {
 
-        String input = "{{[()]}}";
+        //String input = "{{[()]}}";
+        String input = "{[)]";
         VaildParentheses vp = new VaildParentheses();
         System.out.println(vp.isValid(input));
     }

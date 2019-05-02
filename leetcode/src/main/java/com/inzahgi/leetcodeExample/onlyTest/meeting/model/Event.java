@@ -1,6 +1,6 @@
 package com.inzahgi.leetcodeExample.onlyTest.meeting.model;
 
-<<<<<<< HEAD
+import com.inzahgi.leetcodeExample.onlyTest.meeting.util.Constant;
 
 
 public class Event {
@@ -39,39 +39,14 @@ public class Event {
     }
 
     public String toShow(){
-        if(type == EVENT_TYPE.IS_LUNCH || type == EVENT_TYPE.IS_NETWORING){
+        if(type == Constant.EVENT_TYPE.IS_LUNCH || type == Constant.EVENT_TYPE.IS_NETWORING){
             return name;
         }
         StringBuilder sb = new StringBuilder();
-        if(type == EVENT_TYPE.IS_NORMAL){
+        if(type == Constant.EVENT_TYPE.IS_NORMAL){
             return sb.append(name).append(" ").append(duration).append("min").toString();
         }
         return sb.append(name).append(" ").append("lightning").toString();
 
-=======
-public class Event {
-
-    private String Name;
-
-    private long start;
-
-    
-
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public long getStart() {
-        return start;
-    }
-
-    public void setStart(long start) {
-        this.start = start;
->>>>>>> c92c775142431c453370f2e0bc6d86caccb930ab
     }
 }
