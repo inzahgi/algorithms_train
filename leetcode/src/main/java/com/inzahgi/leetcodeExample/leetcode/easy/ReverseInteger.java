@@ -17,15 +17,15 @@ public class ReverseInteger {
             x = quo;
         }
 
-        int res = 0;
+        long res = 0;
         for (int j = 0; j <= i; j++) {
-            int tmp = ar[j] + res *10;
-            if(res > tmp) {
-                return 0;
-            }
+            long tmp = ar[j] + res *10;
             res = tmp;
         }
-        return res;
+        if(res > Integer.MAX_VALUE || res < Integer.MIN_VALUE) {
+            return 0;
+        }
+        return (int)res;
     }
 
     public static void main(String[] args) {
