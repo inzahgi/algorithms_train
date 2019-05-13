@@ -6,9 +6,9 @@ import com.jimmysun.algorithms.chapter4_2.Digraph;
 import com.jimmysun.algorithms.chapter4_2.DirectedDFS;
 
 public class NFA {
-	private char[] re; // 匹配转换
-	private Digraph G; // epsilon转换
-	private int M; // 状态数量
+	private char[] re; //
+	private Digraph G; //
+	private int M; //
 
 	public NFA(String regexp) {
 		Stack<Integer> ops = new Stack<Integer>();

@@ -22,12 +22,12 @@ public class RabinKarp {
 		patHash = hash(pat, M);
 	}
 
-	public boolean check(int i) { // ÃÉÌØ¿¨ÂåËã·¨
+	public boolean check(int i) { // ï¿½ï¿½ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ã·¨
 		return true;
 	}
 
 	private long hash(String key, int M) {
-		// ¼ÆËãkey[0..M-1]µÄÉ¢ÁĞÖµ
+		//
 		long h = 0;
 		for (int j = 0; j < M; j++) {
 			h = (R * h + key.charAt(j)) % Q;
