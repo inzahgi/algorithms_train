@@ -20,10 +20,11 @@ public class NoSameCharString {
                     end = j;
                 }
                 //更新i, j   i为之前保存的字符位置的下一个元素  然后更新该字符为当前位置
-                if(map.get(ch) > i)
-                    i = map.get(ch)+1;
-                map.put(ch, j);
-                continue;
+                if(map.get(ch) > i) {
+                    i = map.get(ch) + 1;
+                }
+                //map.put(ch, j);
+                //continue;
             }
             map.put(ch, j);
 
@@ -61,7 +62,9 @@ public class NoSameCharString {
 
     public static void main(String[] args) {
         NoSameCharString nscs = new NoSameCharString();
-        //System.out.println(nscs.findUniqueString("ye1hude2e2uque82qu2"));
-        System.out.println(nscs.findUniqueCharString2("ye1hude2e2uque82qu2"));
+        System.out.println(nscs.findUniqueString("ye1hude2e2uque82qu2"));
+       //System.out.println(nscs.findUniqueCharString2("ye1hude2e2uque82qu2"));
+
+        
     }
 }
