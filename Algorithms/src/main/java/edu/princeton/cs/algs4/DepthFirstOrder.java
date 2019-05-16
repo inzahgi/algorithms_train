@@ -33,9 +33,9 @@
 
 package edu.princeton.cs.algs4;
 
-import com.jimmysun.algorithms.chapter4_2.Digraph;
-import com.jimmysun.algorithms.chapter4_4.DirectedEdge;
-import com.jimmysun.algorithms.chapter4_4.EdgeWeightedDigraph;
+import com.inzahgi.algorithms.chapter4_2.Digraph;
+import com.inzahgi.algorithms.chapter4_4.DirectedEdge;
+import com.inzahgi.algorithms.chapter4_4.EdgeWeightedDigraph;
 
 /**
  *  The {@code DepthFirstOrder} class represents a data type for 
