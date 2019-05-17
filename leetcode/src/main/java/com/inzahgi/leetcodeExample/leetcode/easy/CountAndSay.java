@@ -9,7 +9,8 @@ public class CountAndSay {
         for (int i = 0; i < len/2; i++) {
 
         }
-        return new String(ar);
+        //return new String(a);
+        return null;
     }
 
     public static void main(String[] args) {
