@@ -11,14 +11,15 @@ public class BinarySeach {
             return -1;
         }
         int mid = (a[lo] + a[hi])/2;
-        if(k == mid){
-            return mid;
-        }else if(k > mid){
+        if(k > mid){
             return rank(a, k, mid+1, hi);
         }else if(k < mid){
             return rank(a, k, lo, mid -1);
         }
-        return -1;
+
+        return mid;
+
+
     }
 
     public static void main(String[] args) {
