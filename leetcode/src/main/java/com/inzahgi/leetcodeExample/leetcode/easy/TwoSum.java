@@ -16,6 +16,8 @@ package com.inzahgi.leetcodeExample.leetcode.easy;
 //
 //
 
+import java.util.HashMap;
+
 class TwoSum {
     public int[] twoSum(int[] nums, int target) {
         int[] res = new int[2];
@@ -34,10 +36,37 @@ class TwoSum {
         return res;
     }
 
+    public int[] twoSum_2(int[] nums, int target) {
+        int[] res = new int[2];
+        if(nums == null || nums.length < 2){
+            return res;
+        }
+        HashMap<Integer, Integer> dict = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; i++) {
+            dict.put(nums[i], i);
+        }
+
+
+        for (int i = 0; i < nums.length; i++) {
+            int tmp = target - nums[i];
+            if(dict.containsKey(tmp)){
+                int j = dict.get(tmp);
+                if(i != j) {
+                    res[0] = i;
+                    res[1] = j;
+                    break;
+                }
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         TwoSum twoSum = new TwoSum();
-        int[] nums = {2, 7, 11 ,15};
-        int[] res = twoSum.twoSum(nums, 9);
+        //int[] nums = {2, 7, 11 ,15};
+        //int[] res = twoSum.twoSum_2(nums, 9);
+        int[] nums = {3, 2, 4};
+        int[] res = twoSum.twoSum_2(nums, 6);
         for (int i = 0; i < res.length; i++) {
             System.out.println(i + " -------- " + res[i]);
         }
