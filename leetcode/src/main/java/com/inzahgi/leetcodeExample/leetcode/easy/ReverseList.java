@@ -21,7 +21,7 @@ package com.inzahgi.leetcodeExample.leetcode.easy;
  *     ListNode(int x) { val = x; }
  * }
  */
-class Solution {
+class ReverseList {
 
     public class ListNode {
         int val;
